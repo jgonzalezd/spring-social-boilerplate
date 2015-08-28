@@ -7,8 +7,9 @@
 
     <import resource="classpath:ApplicationContext-web.xml"/>
     <import resource="classpath:ApplicationContext-persistence.xml"/>
-    <!--<import resource="classpath:ApplicationContext-security.xml"/>-->
+    <import resource="classpath:ApplicationContext-security.xml"/>
     <import resource="classpath:ApplicationContext-social.xml"/>
+    <context:property-placeholder location="classpath:application.properties" ignore-unresolvable="true" />
 
     <context:component-scan base-package="com.micetechnologies.applications.api.user.service"/>
 

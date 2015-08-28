@@ -23,7 +23,7 @@ ext {
     springVersion = '4.1.7.RELEASE'
     tomcatVersion = '8.0.24'
     springDataRestVersion= '2.3.2.RELEASE'
-    springDataJPAVersion='1.8.2.RELEASE'
+    springDataJPAVersion='1.6.0.RELEASE' //1.8.2.RELEASE'
     springDataCoreVersion = '1.4.1.RELEASE'
     hibernateVersion ='4.3.11.Final'
     hibernateValidatorVersion = '5.2.1.Final'
@@ -49,7 +49,7 @@ dependencies {
     compile "org.springframework:spring-beans:${springVersion}"
     compile "org.springframework:spring-context:${springVersion}"
     compile "org.springframework:spring-context-support:${springVersion}"
-    compile "org.springframework.data:spring-data-commons-core:${springDataCoreVersion}"
+    //compile "org.springframework.data:spring-data-commons-core:${springDataCoreVersion}"
     compile "org.springframework.data:spring-data-jpa:${springDataJPAVersion}"          //not included in data-rest
     compile "org.springframework:spring-jdbc:${springVersion}"                          //For profiles
 
