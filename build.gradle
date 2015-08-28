@@ -1,0 +1,96 @@
+group 'com.micetechnologies.applications'
+version '1.0-SNAPSHOT'
+
+apply plugin: 'java'
+apply plugin: 'war'
+apply plugin: 'idea'
+apply plugin: 'com.bmuschko.tomcat'
+
+buildscript {
+    repositories {
+        jcenter()
+    }
+    dependencies {
+        classpath "com.bmuschko:gradle-tomcat-plugin:2.2.2"
+    }
+}
+
+sourceCompatibility = 1.8
+targetCompatibility = 1.8
+
+ext {
+    log4jVersion = '2.3'
+    springVersion = '4.1.7.RELEASE'
+    tomcatVersion = '8.0.24'
+    springDataRestVersion= '2.3.2.RELEASE'
+    springDataJPAVersion='1.8.2.RELEASE'
+    springDataCoreVersion = '1.4.1.RELEASE'
+    hibernateVersion ='4.3.11.Final'
+    hibernateValidatorVersion = '5.2.1.Final'
+    springSocialFBVersion = '2.0.2.RELEASE'
+    springSocialTwitterVersion = '1.1.0.RELEASE'
+    springSocialSecurityVersion = '1.1.2.RELEASE'
+    springSecurityVersion = '4.0.2.RELEASE'
+    apacheHTTPClientVersion = '4.5'
+
+    env = findProperty('env', 'memory')
+}
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    compile group: 'org.apache.logging.log4j', name: 'log4j-api', version: "${log4jVersion}"
+    compile group: 'org.apache.logging.log4j', name: 'log4j-core', version: "${log4jVersion}"
+
+    compile "org.apache.commons:commons-lang3:3.4"
+
+    compile "org.springframework:spring-beans:${springVersion}"
+    compile "org.springframework:spring-context:${springVersion}"
+    compile "org.springframework:spring-context-support:${springVersion}"
+    compile "org.springframework.data:spring-data-commons-core:${springDataCoreVersion}"
+    compile "org.springframework.data:spring-data-jpa:${springDataJPAVersion}"          //not included in data-rest
+    compile "org.springframework:spring-jdbc:${springVersion}"                          //For profiles
+
+    compile "org.hibernate:hibernate-entitymanager:${hibernateVersion}"                 //actual implementation of JPA, contains hibernate-core
+    compile "org.hibernate:hibernate-validator:${hibernateValidatorVersion}"
+
+    // Spring social integration
+    compile "org.springframework.social:spring-social-facebook:${springSocialFBVersion}"
+    compile "org.springframework.social:spring-social-twitter:${springSocialTwitterVersion}"
+    compile "org.springframework.social:spring-social-security:${springSocialSecurityVersion}" //Contains class SocialUser
+    compile "org.springframework.security:spring-security-core:${springSecurityVersion}"
+    compile "org.springframework.security:spring-security-web:${springSecurityVersion}"
+    compile "org.springframework.security:spring-security-config:${springSecurityVersion}"
+    compile "org.apache.httpcomponents:httpclient:${apacheHTTPClientVersion}"
+
+    //Testing
+    testCompile group: 'junit', name: 'junit', version: '4.11'
+    testCompile "org.springframework:spring-test:${springVersion}"
+    testCompile "org.mockito:mockito-core:1.9.5"
+    testCompile "com.h2database:h2:1.4.182"
+
+    // Run embed tomcat
+    tomcat "com.h2database:h2:1.4.182"                                                  //Otherwise not loaded when tomcat started
+    tomcat "org.apache.tomcat.embed:tomcat-embed-core:${tomcatVersion}"
+    tomcat "org.apache.tomcat.embed:tomcat-embed-logging-log4j:${tomcatVersion}"
+    tomcat "org.apache.tomcat.embed:tomcat-embed-jasper:${tomcatVersion}"
+    tomcat "org.apache.tomcat:tomcat-dbcp:${tomcatVersion}"
+}
+
+tomcat {
+    httpPort = 9080
+    ajpPort = 9009
+    stopPort = 9081
+}
+
+[tomcatRun, tomcatRunWar].each { task ->
+    task.contextPath = 'api'
+    task.configFile = file("src/test/tomcat/${env}-context.xml")
+    // task.daemon = true
+}
+
+def String findProperty(key, defaultVal) {
+    return System.properties.containsKey(key) ? System.properties[key] : defaultVal
+}

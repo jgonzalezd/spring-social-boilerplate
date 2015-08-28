@@ -1,0 +1,1 @@
+INSERT INTO profile VALUES (null,'Julian Gonzalez', parsedatetime('2009-11-31', 'yyyy-mm-dd'),'Software Engineer', 'Software Engineer', 1);

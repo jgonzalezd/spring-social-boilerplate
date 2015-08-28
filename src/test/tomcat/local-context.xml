@@ -1,0 +1,14 @@
+<?xml version='1.0' encoding='utf-8'?>
+<Context>
+    <WatchedResource>WEB-INF/web.xml</WatchedResource>
+    <Resource name="jdbc/datingapp"
+              auth="Container"
+              type="javax.sql.DataSource"
+              driverClassName="com.mysql.jdbc.Driver"
+              url="jdbc:mysql://localhost:5619/sparkstoflames_test"
+              username="s2f_user"
+              password="s2f_user123!."
+              validationQuery="select 1"
+              maxActive="10"
+              maxIdle="4" />
+</Context>
