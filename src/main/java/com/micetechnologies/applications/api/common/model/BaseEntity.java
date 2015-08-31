@@ -1,7 +1,10 @@
 package com.micetechnologies.applications.api.common.model;
 
+import org.hibernate.annotations.Type;
+import org.joda.time.DateTime;
+
 import javax.persistence.*;
-import java.time.LocalDateTime;
+
 
 /**
  * Created by jgonzalez on 8/27/15.
@@ -10,23 +13,23 @@ import java.time.LocalDateTime;
 public abstract class BaseEntity<ID> {
 
     @Column(name = "creation_time", nullable = false)
-    //@Type(type="org.jadira.usertype.dateandtime.joda.PersistentDateTime")
-    private LocalDateTime creationTime;
+    @Type(type="org.jadira.usertype.dateandtime.joda.PersistentDateTime")
+    private DateTime creationTime;
 
     @Column(name = "modification_time", nullable = false)
-    //@Type(type="org.jadira.usertype.dateandtime.joda.PersistentDateTime")
-    private LocalDateTime modificationTime;
+    @Type(type="org.jadira.usertype.dateandtime.joda.PersistentDateTime")
+    private DateTime modificationTime;
 
     @Version
     private long version;
 
     public abstract ID getId();
 
-    public LocalDateTime getCreationTime() {
+    public DateTime getCreationTime() {
         return creationTime;
     }
 
-    public LocalDateTime getModificationTime() {
+    public DateTime getModificationTime() {
         return modificationTime;
     }
 
@@ -36,13 +39,13 @@ public abstract class BaseEntity<ID> {
 
     @PrePersist
     public void prePersist() {
-        LocalDateTime now = LocalDateTime.now();
+        DateTime now = DateTime.now();
         this.creationTime = now;
         this.modificationTime = now;
     }
 
     @PreUpdate
     public void preUpdate() {
-        this.modificationTime = LocalDateTime.now();
+        this.modificationTime = DateTime.now();
     }
 }

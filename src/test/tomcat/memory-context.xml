@@ -3,7 +3,7 @@
     <WatchedResource>WEB-INF/web.xml</WatchedResource>
     <Resource name="jdbc/datingapp" auth="Container" type="javax.sql.DataSource"
               driverClassName="org.h2.Driver"
-              url="jdbc:h2:mem:assessor;INIT=runscript from 'src/test/resources/data/schema.sql';DB_CLOSE_DELAY=-1"
+              url="jdbc:h2:mem:api;INIT=runscript from 'src/test/resources/data/schema.sql';DB_CLOSE_DELAY=-1"
               username="sa" password="" validationQuery="select 1" maxActive="1"
               maxIdle="1" />
 </Context>

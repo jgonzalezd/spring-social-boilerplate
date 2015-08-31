@@ -19,7 +19,7 @@ public class HomeController {
 
     protected static final String VIEW_NAME_HOMEPAGE = "index";
 
-    @RequestMapping(value="/", method = RequestMethod.GET)
+    @RequestMapping(value="/hello", method = RequestMethod.GET)
     public String showHomePage() {
         LOGGER.debug("Rendering homepage.");
         return VIEW_NAME_HOMEPAGE;

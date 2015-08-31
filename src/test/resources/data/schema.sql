@@ -10,7 +10,8 @@ create table if not exists UserConnection (userId varchar(255) not null,
     refreshToken varchar(255),
     expireTime bigint,
     primary key (userId, providerId, providerUserId));
-create unique index UserConnectionRank on UserConnection(userId, providerId, rank);
+
+create unique index if not exists UserConnectionRank on UserConnection(userId, providerId, rank);
 
 CREATE TABLE if not exists user_accounts (
   id bigint(20) NOT NULL AUTO_INCREMENT,
