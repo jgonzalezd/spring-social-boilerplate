@@ -46,10 +46,11 @@ repositories {
 dependencies {
     compile "org.apache.commons:commons-lang3:3.4"
 
-    compile "log4j:log4j:${log4jVersion}"
+//    compile "log4j:log4j:${log4jVersion}"
+//    compile "org.slf4j:slf4j-api:${slf4jVersion}"
+//    compile "org.slf4j:slf4j-log4j12:${slf4jVersion}"
 
-    compile "org.slf4j:slf4j-api:${slf4jVersion}"
-    compile "org.slf4j:slf4j-log4j12:${slf4jVersion}"
+    compile 'ch.qos.logback:logback-classic:1.1.3'
 
     compile "joda-time:joda-time:${jodaTimeVersion}"
     compile "org.jadira.usertype:usertype.core:${jadiraVersion}"
@@ -74,11 +75,17 @@ dependencies {
     compile "org.springframework.security:spring-security-config:${springSecurityVersion}"
     compile "org.apache.httpcomponents:httpclient:${apacheHTTPClientVersion}"
 
+    runtime "javax.servlet.jsp.jstl:javax.servlet.jsp.jstl-api:1.2.1"
+    runtime "org.springframework.security:spring-security-taglibs:${springSecurityVersion}"
+
     //Testing
     testCompile group: 'junit', name: 'junit', version: '4.11'
     testCompile "org.springframework:spring-test:${springVersion}"
     testCompile "org.mockito:mockito-core:1.9.5"
     testCompile "com.h2database:h2:1.4.182"
+
+    runtime "org.sitemesh:sitemesh:3.0-alpha-2"
+
 
     // Run embed tomcat
     tomcat "com.h2database:h2:1.4.182"                                                  //Otherwise not loaded when tomcat started
@@ -86,6 +93,7 @@ dependencies {
     tomcat "org.apache.tomcat.embed:tomcat-embed-logging-log4j:${tomcatVersion}"
     tomcat "org.apache.tomcat.embed:tomcat-embed-jasper:${tomcatVersion}"
     tomcat "org.apache.tomcat:tomcat-dbcp:${tomcatVersion}"
+
 }
 
 tomcat {

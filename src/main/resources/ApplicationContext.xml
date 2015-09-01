@@ -9,7 +9,7 @@
     <import resource="classpath:ApplicationContext-security.xml"/>
     <import resource="classpath:ApplicationContext-social.xml"/>
     <import resource="classpath:ApplicationContext-persistence.xml"/>
-    <import resource="classpath:ApplicationContext-web.xml"/>
+    <!--<import resource="classpath:ApplicationContext-web.xml"/>-->
 
     <!-- Ensures that configuration properties are read from a property file -->
     <context:property-placeholder location="classpath:application.properties"/>

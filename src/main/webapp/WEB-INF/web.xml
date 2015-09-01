@@ -3,15 +3,35 @@
 
     <display-name>api</display-name>
 
-    <context-param>
+    <!-- For web context -->
+    <servlet>
+        <servlet-name>api-dispatcher</servlet-name>
+        <servlet-class>
+            org.springframework.web.servlet.DispatcherServlet
+        </servlet-class>
+        <init-param>
+            <param-name>contextConfigLocation</param-name>
+            <param-value>classpath:ApplicationContext-web.xml</param-value>
+        </init-param>
+        <load-on-startup>1</load-on-startup>
+    </servlet>
+
+    <servlet-mapping>
+        <servlet-name>api-dispatcher</servlet-name>
+        <url-pattern>/</url-pattern>
+    </servlet-mapping>
+
+
+
+    <!--<context-param>
         <param-name>log4jConfigLocation</param-name>
         <param-value>classpath:log4j.properties</param-value>
-    </context-param>
+    </context-param>-->
 
     <!--Move these 2 lines of code to the top of your web.xml to resolve the problem-->
     <listener>
         <!--Log4jConfigListener has to be the first listener in your web.xml.-->
-        <listener-class>org.springframework.web.util.Log4jConfigListener</listener-class>
+        <!--<listener-class>org.springframework.web.util.Log4jConfigListener</listener-class>-->
         <listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
     </listener>
 
