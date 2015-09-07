@@ -76,6 +76,7 @@ dependencies {
     compile "org.apache.httpcomponents:httpclient:${apacheHTTPClientVersion}"
 
     runtime "javax.servlet.jsp.jstl:javax.servlet.jsp.jstl-api:1.2.1"
+    runtime "javax.servlet.jsp.jstl:jstl:1.2"
     runtime "org.springframework.security:spring-security-taglibs:${springSecurityVersion}"
 
     //Testing
