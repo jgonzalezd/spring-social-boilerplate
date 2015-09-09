@@ -15,7 +15,7 @@
     <context:property-placeholder location="classpath:application.properties"/>
 
     <!--<context:annotation-config />-->
-    <context:component-scan base-package="com.micetechnologies.applications.api.user.service" />
+    <context:component-scan base-package="com.micetechnologies.applications.appname.user.service" />
 
     <bean id="messageSource" class="org.springframework.context.support.ResourceBundleMessageSource">
         <property name="basename" value="i18n/messages"/>

@@ -16,7 +16,7 @@
         <appender-ref ref="STDOUT" />
     </logger>
 
-    <logger name="com.micetechnologies.applications.api" level="debug"
+    <logger name="com.micetechnologies.applications.appname" level="debug"
             additivity="false">
         <appender-ref ref="STDOUT" />
     </logger>
