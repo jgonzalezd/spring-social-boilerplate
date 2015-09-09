@@ -6,6 +6,7 @@
        xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
        http://www.springframework.org/schema/security http://www.springframework.org/schema/security/spring-security-4.0.xsd">
 
+
     <!-- Static resources such as CSS and JS files are ignored by Spring Security -->
     <security:http pattern="/static/**" security="none" />
 
@@ -37,7 +38,6 @@
         <!-- Adds social authentication filter to the Spring Security filter chain. -->
         <security:custom-filter ref="socialAuthenticationFilter" before="PRE_AUTH_FILTER" />
     </security:http>
-
     <!--
         Configures the authentication manager bean which processes authentication
         requests.

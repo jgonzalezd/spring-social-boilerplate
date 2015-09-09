@@ -9,6 +9,10 @@
         <servlet-class>
             org.springframework.web.servlet.DispatcherServlet
         </servlet-class>
+
+        <!--In the dispatcher-servlet context you will define everything related to Spring web MVC
+        (mvc:annotation-driven/, interceptors, view resolvers, exception resolvers, context:component-scan
+        for controllers package, aop that you want applied to controllers, etc.);-->
         <init-param>
             <param-name>contextConfigLocation</param-name>
             <param-value>classpath:ApplicationContext-web.xml</param-value>
@@ -21,6 +25,16 @@
         <url-pattern>/</url-pattern>
     </servlet-mapping>
 
+    <filter>
+        <filter-name>springSecurityFilterChain</filter-name>
+        <filter-class>org.springframework.web.filter.DelegatingFilterProxy</filter-class>
+    </filter>
+
+    <filter-mapping>
+        <filter-name>springSecurityFilterChain</filter-name>
+        <url-pattern>/*</url-pattern>
+    </filter-mapping>
+
 
 
     <!--<context-param>
@@ -28,16 +42,15 @@
         <param-value>classpath:log4j.properties</param-value>
     </context-param>-->
 
-    <!--Move these 2 lines of code to the top of your web.xml to resolve the problem-->
+    <!--In the main application context you will define all that's non-mvc related
+    (for example your persistence configuration, scanning for services and dao packages etc.).-->
     <listener>
-        <!--Log4jConfigListener has to be the first listener in your web.xml.-->
-        <!--<listener-class>org.springframework.web.util.Log4jConfigListener</listener-class>-->
         <listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
     </listener>
 
     <context-param>
         <param-name>contextConfigLocation</param-name>
-        <param-value>classpath:ApplicationContext.xml</param-value>
+        <param-value>classpath:ApplicationContext.xml,classpath:ApplicationContext-web.xml</param-value>
     </context-param>
 
     <context-param>
