@@ -12,13 +12,14 @@ import java.util.Scanner;
 /**
  * Created by jgonzalez on 9/10/15.
  */
+@RunWith(SpringJUnit4ClassRunner.class)
+@ContextConfiguration(locations = { "classpath:TestContext.xml" })
+public abstract class BaseTest extends AbstractTransactionalJUnit4SpringContextTests  {
 
-public class UtilsTest {
-
-    public static String getFile(String fileName, Class<?> clazz) {
+    public String getFile(String fileName) {
         StringBuilder result = new StringBuilder("");
         //Get file from resources folder
-        ClassLoader classLoader = clazz.getClassLoader();
+        ClassLoader classLoader = getClass().getClassLoader();
         File file = new File(classLoader.getResource(fileName).getFile());
         try (Scanner scanner = new Scanner(file)) {
             while (scanner.hasNextLine()) {

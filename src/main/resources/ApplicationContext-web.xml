@@ -20,7 +20,7 @@
     <context:component-scan base-package="com.micetechnologies.applications.appname.security.controller" />
     <context:component-scan base-package="com.micetechnologies.applications.appname.user.controller" />
 
-    <context:component-scan base-package="com.micetechnologies.applications.appname.api.v1.controller" />
+    <!--<context:component-scan base-package="com.micetechnologies.applications.appname.api.v1.controller" />-->
 
     <bean id="exceptionResolver" class="org.springframework.web.servlet.handler.SimpleMappingExceptionResolver">
         <property name="exceptionMappings">
