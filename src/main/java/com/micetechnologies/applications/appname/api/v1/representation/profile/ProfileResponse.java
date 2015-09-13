@@ -1,5 +1,6 @@
 package com.micetechnologies.applications.appname.api.v1.representation.profile;
 
+import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonRootName;
 
@@ -9,6 +10,7 @@ import java.util.List;
  * Created by jgonzalez on 9/10/15.
  */
 @JsonRootName(value = "user")
+@JsonInclude(JsonInclude.Include.NON_NULL) //wont include null parameters in response
 public class ProfileResponse {
 
     private String name;

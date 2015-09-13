@@ -18,7 +18,7 @@ CREATE TABLE if not exists user_accounts (
   creation_time datetime NOT NULL,
   email varchar(100) NOT NULL,
   first_name varchar(100) NOT NULL,
-  last_name varchar(100) NOT NULL,
+  last_name varchar(100),
   modification_time datetime NOT NULL,
   password varchar(255),
   role varchar(20) NOT NULL,

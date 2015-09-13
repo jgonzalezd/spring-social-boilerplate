@@ -10,8 +10,7 @@ import java.util.Map;
  * Created by jgonzalez on 9/9/15.
  */
 public class BaseRequest implements Serializable{
-
-    //TODO: SerialversionUID
+    private static final long serialVersionUID = 526399887992805262L;
 
     private Map<String, FieldKey> fieldKeys = new HashMap<String, FieldKey>();
     private Map<FieldKey, Object> fields = new HashMap<FieldKey, Object>();
